@@ -3,7 +3,7 @@ import styles from './Header.module.css'
 import {useTelegram} from '../../../../hooks/useTelegram'
 
 
-const {user} = useTelegram()
+const {user, photo_url} = useTelegram()
 
 
 function Navigation() {
@@ -13,7 +13,7 @@ function Navigation() {
         <div className={styles.header_avatar}>
           <img 
             alt={user?.username}
-            src={user?.photo_url}
+            src={photo_url}
             width="36"
             height="36"
           >        
