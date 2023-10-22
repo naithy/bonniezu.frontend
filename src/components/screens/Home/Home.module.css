@@ -1,0 +1,10 @@
+.home_page
+{
+    gap: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #222327;
+    background: var(--tg-theme-secondary-bg-color);
+}

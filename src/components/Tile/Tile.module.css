@@ -1,0 +1,35 @@
+.tile
+{
+    border-radius: 15px;
+    height: 100%;
+    text-align: center;
+    text-decoration: none;
+}
+
+
+.tile_inner
+{
+    color: var(--tg-theme-text-color);
+    font-weight: 800;
+    line-height: 25px;
+    padding: 15px;
+}
+
+
+.tile_icon
+{
+    margin-top: 10px;
+}
+
+
+.tile_other
+{
+    min-height: 200px;
+    background-color: #111;
+    color: #fff;
+    border-radius: 15px;
+    height: 100%;
+    text-align: center;
+}
+
+
