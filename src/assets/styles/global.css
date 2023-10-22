@@ -3,11 +3,6 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-}
-
-body
-{
-    font-family: var(--default-font);
-    background-color: var(--tg-theme-secondary-bg-color);
+    font-family: "SF Pro Display",-apple-system,BlinkMacSystemFont,Roboto,sans-serif;
     color: var(--tg-theme-text-color)
 }
