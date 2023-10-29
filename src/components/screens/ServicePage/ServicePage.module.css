@@ -1,0 +1,52 @@
+.service_page
+{
+    background-color: var(--tg-theme-secondary-bg-color);
+    min-height: 100vh;
+}
+
+
+.service_image
+{   
+    min-height: 500px;
+}
+
+
+hr
+{
+    border: none;
+    border-top: 1px solid var(--tg-theme-text-color);
+    margin-bottom: 10px;
+}
+
+
+.service_image > img
+{   
+    margin-top: 100px;
+}
+
+
+.order_card
+{
+    padding: 16px;
+    border-radius: 20px;
+    top: -20px;
+    position: relative;
+    background-color: var(--tg-theme-bg-color);
+    height: 300px;
+}
+
+.order_price
+{
+    line-height: 110%;
+    font-weight: 900;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.order_options
+{
+    gap: 4px;
+    display: flex;
+    padding: 0 15px;
+    margin: 10px -15px 0;
+}

@@ -1,0 +1,37 @@
+.button
+{
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 60px;
+    border: var(--tg-theme-secondary-bg-color);
+    border-radius: 10px;
+}
+
+
+.button.active
+{
+    border-color: var(--tg-theme-button-color);
+}
+
+
+.time
+{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 130%;
+    letter-spacing: -.01em;
+}
+
+
+.method
+{
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 130%;
+    color: var(--tg-theme-hint-color)
+}
+
+
+
