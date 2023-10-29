@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './Tiles.module.css'
 import Tile from "../../../Tile/Tile"
 import TileBig from '../../../Tile/TileBig'
+import ServicePage from '../../../screens/ServicePage/ServicePage'
 
 
 const COLORS = {

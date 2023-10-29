@@ -5,13 +5,13 @@ import { useTelegram } from '../../../hooks/useTelegram'
 
 
 const {tg} = useTelegram()
-tg.setHeaderColor('secondary_bg_color')
 
 
 const Home = () => {
 
   useEffect(() => {
     tg.ready();
+    tg.setHeaderColor('secondary_bg_color');
   }, [])
 
   return (
