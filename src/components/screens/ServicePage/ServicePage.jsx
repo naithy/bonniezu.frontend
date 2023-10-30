@@ -19,7 +19,7 @@ const ServicePage = () => {
   const navigate = useNavigate();
 
   useLayoutEffect(() => {
-    tg.BackButton.isVisible(true);
+    tg.BackButton.show();
     tg.BackButton.onClick(navigate(-1))
   }, [])
 

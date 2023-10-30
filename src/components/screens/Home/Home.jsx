@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useLayoutEffect } from 'react'
 import styles from './Home.module.css'
 import Layout from '../../ui/Layout/Layout'
 import { useTelegram } from '../../../hooks/useTelegram'
@@ -8,6 +8,12 @@ const {tg} = useTelegram()
 
 
 const Home = () => {
+
+  useLayoutEffect(() => {
+    if (tg.BackButton.isVisible) {
+      tg.BackButton.hide();
+    }
+  }, [])
 
   useEffect(() => {
     tg.ready();
