@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import styles from './ServicePage.module.css'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import Button from '../../Button/Button';
 import { useTelegram } from '../../../hooks/useTelegram'
 
@@ -16,11 +16,18 @@ const COLORS = {
 
 const ServicePage = () => {
 
+  const navigate = useNavigate();
+
+  useLayoutEffect(() => {
+    tg.BackButton.isVisible(true);
+    tg.BackButton.onClick(navigate(-1))
+  }, [])
+
   const location = (useLocation().pathname).slice(1);
 
   useEffect(() => {
     tg.setHeaderColor(`${COLORS[location]}`);
-  })
+  }, [])
 
   const [active, setActive] = useState(0);
 
