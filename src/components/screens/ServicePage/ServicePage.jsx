@@ -20,7 +20,7 @@ const ServicePage = () => {
 
   useLayoutEffect(() => {
     tg.BackButton.show();
-    tg.BackButton.onClick(navigate(-1))
+    tg.BackButton.onClick(() => navigate(-1))
   }, [])
 
   const location = (useLocation().pathname).slice(1);
