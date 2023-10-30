@@ -1,13 +1,13 @@
 .service_page
 {
-    background-color: var(--tg-theme-bg-color);
+    background-color: var(--tg-theme-secondary-bg-color);
     min-height: 100vh;
 }
 
 
 .service_image
 {   
-    min-height: 500px;
+    min-height: 270px;
 }
 
 
@@ -21,7 +21,7 @@ hr
 
 .service_image > img
 {   
-    margin-top: 100px;
+    margin-bottom: 20px;
 }
 
 
