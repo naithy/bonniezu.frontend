@@ -1,6 +1,6 @@
 .service_page
 {
-    background-color: var(--tg-theme-secondary-bg-color);
+    background-color: var(--tg-theme-bg-color);
     min-height: 100vh;
 }
 
