@@ -43,10 +43,23 @@ hr
     margin-bottom: 10px;
 }
 
-.order_options
+.order_selector
 {
-    gap: 4px;
     display: flex;
-    padding: 0 15px;
-    margin: 10px -15px 0;
+    background-color: var(--tg-theme-secondary-bg-color);
+    border-radius: 10px;
+    flex-direction: column;
+    padding: 6px;
+}
+
+ul
+{
+    display: flex;
+    flex: 1;
+}
+
+
+ul:first-of-type
+{
+    margin-bottom: 6px;
 }

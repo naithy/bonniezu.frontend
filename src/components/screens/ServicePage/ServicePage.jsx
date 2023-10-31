@@ -16,6 +16,9 @@ const COLORS = {
 
 const ServicePage = () => {
 
+  const types = ['Со входом', 'Без входа'];
+  const time = ['1 месяц', '5 месяцев', '1 год']
+
   const navigate = useNavigate();
 
   useLayoutEffect(() => {
@@ -30,6 +33,7 @@ const ServicePage = () => {
   }, [])
 
   const [active, setActive] = useState(0);
+  const [active2, setActive2] = useState(0);
 
   return (
     <div className={styles.service_page}>
@@ -41,9 +45,16 @@ const ServicePage = () => {
           500 ₽
         </div>
         <hr/>
-        <div className={styles.order_options}>
-          <Button time='1year' method='Cо входом' onClick={() => setActive(0)} active={active === 0 ? true : false}/>
-          <Button time='1year' method='Без входа' onClick={() => setActive(1)} active={active === 1 ? true : false}/>
+        <div className={styles.order_selector}>
+          <ul>
+            <Button onClick={() => setActive(0)} active={active === 0 ? true : false} inner='Со входом'/>
+            <Button onClick={() => setActive(1)} active={active === 1 ? true : false} inner='Без входа'/>
+          </ul>
+          <ul>
+            <Button onClick={() => setActive2(0)} active={active2 === 0 ? true : false} inner='1 месяц'/>
+            <Button onClick={() => setActive2(1)} active={active2 === 1 ? true : false} inner='2 месяца'/>
+            <Button onClick={() => setActive2(2)} active={active2 === 2 ? true : false} inner='1 год'/>
+          </ul>
         </div>
       </div>
     </div>
