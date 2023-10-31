@@ -9,9 +9,9 @@ const {tg} = useTelegram()
 
 const COLORS = {
   discord: '#586AE9',
-  faceit: '',
-  spotify: '',
-  steam: '',
+  faceit: '#FFFFFF',
+  spotify: '#19E58D',
+  steam: '#C0DFDC',
 }
 
 const ServicePage = () => {
