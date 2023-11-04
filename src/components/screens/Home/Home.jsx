@@ -13,6 +13,7 @@ const Home = () => {
     if (tg.BackButton.isVisible) {
       tg.BackButton.hide();
     }
+    tg.MainButton.hide();
   }, [])
 
   useEffect(() => {

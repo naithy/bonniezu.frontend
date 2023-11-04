@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import styles from './ServicePage.module.css'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Button from '../../Button/Button';
@@ -14,27 +14,86 @@ const COLORS = {
   steam: '#C0DFDC',
 }
 
-const ServicePage = () => {
 
-  const types = ['Со входом', 'Без входа'];
-  const time = ['1 месяц', '5 месяцев', '1 год']
+const ServicePage = () => {
+  
+
+  tg.BackButton.show();
 
   const navigate = useNavigate();
 
-  useLayoutEffect(() => {
-    tg.BackButton.show();
-    tg.BackButton.onClick(() => navigate(-1))
-  }, [])
+  const goBack = () => navigate(-1);
 
   const location = (useLocation().pathname).slice(1);
+  
+
+  const getInvoiceLink = async (price) => {
+    const response = await fetch(`http://localhost:8000/api/createInvoiceLink`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({title: `${location}`, price})
+    })
+    return await response.json()
+  } 
+
+  const [items, setItems] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+
+  const [price, setPrice] = useState(0)
+  const [invoiceLink, setInvoiceLink] = useState('')
+
+  useEffect(() => {
+    tg.BackButton.show();
+  }, [price])
+
+  useEffect(() => {
+    tg.onEvent('backButtonClicked', goBack)
+    return () => {
+      tg.offEvent('backButtonClicked', goBack)
+    }
+  }, [])
+
+  console.log(tg.onEvent('invoiceClosed', console.log('123')))
 
   useEffect(() => {
     tg.setHeaderColor(`${COLORS[location]}`);
-  }, [])
+    fetch(`http://localhost:8000/api/${location}`)
+      .then(res => res.json())
+      .then((arr) => {
+        setItems(arr);
+        setIsLoading(false)
+        const price = typeof arr[0].types[Object.keys(arr[0].types)[0]] === 'object' ? Object.entries(arr[0].types[Object.keys(arr[0].types)[0]])[0][1] : Object.entries(arr[0].types)[0][1]
+        setPrice(price)
+        getInvoiceLink(price)
+          .then(link => setInvoiceLink(link))
+        tg.MainButton.setParams({color: '#5CB85C', text: `Перейти к оплате ${price} ₽`})
+        tg.MainButton.show()
+      });
+    }, []);
+  
+  const [active0, setActive0] = useState(0);
+  const [active1, setActive1] = useState(0);
+  
+  const priceHandler = (price) => {
+    setPrice(price);
+    getInvoiceLink(price)
+      .then(link => setInvoiceLink(link))
+    tg.MainButton.setParams({text: `Перейти к оплате ${price} ₽`});
+  }
 
-  const [active, setActive] = useState(0);
-  const [active2, setActive2] = useState(0);
-
+  const onInvoiceLink = useCallback(() => {
+    tg.openInvoice(invoiceLink)
+  }, [invoiceLink])
+  
+  useEffect(() => {
+    tg.MainButton.onClick(onInvoiceLink)
+    return () => {
+      tg.MainButton.offClick(onInvoiceLink)
+    }
+  }, [onInvoiceLink])
+  
   return (
     <div className={styles.service_page}>
       <div className={styles.service_image} style={{ backgroundColor: `${COLORS[location]}` }}>
@@ -42,19 +101,45 @@ const ServicePage = () => {
       </div>
       <div className={styles.order_card}>
         <div className={styles.order_price}>
-          500 ₽
+          {price} ₽
         </div>
         <hr/>
         <div className={styles.order_selector}>
-          <ul>
-            <Button onClick={() => setActive(0)} active={active === 0 ? true : false} inner='Со входом'/>
-            <Button onClick={() => setActive(1)} active={active === 1 ? true : false} inner='Без входа'/>
-          </ul>
-          <ul>
-            <Button onClick={() => setActive2(0)} active={active2 === 0 ? true : false} inner='1 месяц'/>
-            <Button onClick={() => setActive2(1)} active={active2 === 1 ? true : false} inner='2 месяца'/>
-            <Button onClick={() => setActive2(2)} active={active2 === 2 ? true : false} inner='1 год'/>
-          </ul>
+          {!isLoading && typeof items[0].types[Object.keys(items[0].types)[0]] === 'object' ? 
+          <>
+            <ul>
+              {!isLoading ? Object.keys(items[0].types).map((type, i) => 
+              <Button 
+                key={i} 
+                inner={type} 
+                onClick={() => {setActive0(i); setActive1(0); priceHandler(Object.entries(items[0].types[Object.keys(items[0].types)[i]])[0][1])}} 
+                active={active0 === i ? true : false}/>) 
+              : 
+              ''}
+            </ul>
+            <ul>
+              {!isLoading ? Object.entries(items[0].types[Object.keys(items[0].types)[active0]]).map((item, i) => 
+              <Button 
+                key={i} 
+                inner={item[0]} 
+                onClick={() => {setActive1(i); priceHandler(item[1])}} 
+                active={active1 === i ? true : false}/>) 
+              : 
+              ''}
+            </ul>
+          </>
+          :
+          <>
+            <ul>
+              {!isLoading ? Object.entries(items[0].types).map((type, i) => 
+              <Button key={i} 
+                inner={type[0]} 
+                onClick={() => {setActive0(i); priceHandler(type[1])}} 
+                active={active0 === i ? true : false}/>) : ''}
+            </ul>
+          </>
+          }
+          {!isLoading && typeof items[0].types[Object.keys(items[0].types)[0]] !== 'object' ? '' : ''}
         </div>
       </div>
     </div>
@@ -62,5 +147,3 @@ const ServicePage = () => {
 }
 
 export default ServicePage
-
-

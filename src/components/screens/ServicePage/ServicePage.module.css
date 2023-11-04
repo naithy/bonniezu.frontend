@@ -63,3 +63,8 @@ ul:first-of-type
 {
     margin-bottom: 6px;
 }
+
+ul:only-of-type
+{
+    margin-bottom: 0;
+}

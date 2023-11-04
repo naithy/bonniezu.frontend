@@ -6,4 +6,14 @@
     font-family: "SF Pro Display",-apple-system,BlinkMacSystemFont,Roboto,sans-serif;
     color: var(--tg-theme-text-color);
     list-style: none;
+    -ms-user-select: none; 
+    -moz-user-select: none; 
+    -webkit-user-select: none; 
+    user-select: none; 
+}
+
+
+::-webkit-scrollbar 
+{
+    width: 0;
 }

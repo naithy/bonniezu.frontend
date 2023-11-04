@@ -6,7 +6,7 @@ const Button = ({inner, active, onClick}) => {
 
   return (
     <>
-      <li className={active ? `${styles.button} ${styles.active}`: styles.button} onClick={onClick}>
+      <li className={active ? `${styles.active}`: ''} onClick={onClick}>
         {inner}
       </li>
     </>
