@@ -15,7 +15,7 @@ const GameCards = () => {
   const [games, setGames] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/games')
+    fetch('https://bonniezu.ru/api/games')
       .then(res => {return res.json();})
       .then((data) => {setGames(data)})
   }, [])
