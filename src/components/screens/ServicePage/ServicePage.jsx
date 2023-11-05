@@ -39,6 +39,7 @@ const ServicePage = () => {
   const [activeTime, setActiveTime] = useState(0);
   const [type, setType] = useState();
   const [time, setTime] = useState();
+  const [name, setName] = useState();
 
 
   const getInvoiceLink = async (price, photoUrl, type, time, name='') => {
@@ -70,6 +71,7 @@ const ServicePage = () => {
         setPrice(price)
         const type = typeof arr[0].types[Object.keys(arr[0].types)[0]] === 'object' ? Object.keys(arr[0].types)[0] : ''
         const time = (typeof arr[0].types[Object.keys(arr[0].types)[0]] === 'object' ? Object.entries(arr[0].types[Object.keys(arr[0].types)[0]])[0][0] : Object.entries(arr[0].types)[0][0])
+        setName(arr[0]?.name)
         getInvoiceLink(price, 'https://cybersport.metaratings.ru/storage/images/4f/9a/4f9ab43ff49dd6ad63eaf036295f12cb.jpg', type, time, arr[0]?.name)
           .then(link => setInvoiceLink(link))
         tg.MainButton.setParams({color: '#5CB85C', text: `Перейти к оплате ${price} ₽`})
@@ -84,9 +86,9 @@ const ServicePage = () => {
     }, []);
   
 
-  const buttonHandler = (price, type, time) => {
+  const buttonHandler = (price, type, time, name='') => {
     setPrice(price);
-    getInvoiceLink(price, 'https://cybersport.metaratings.ru/storage/images/4f/9a/4f9ab43ff49dd6ad63eaf036295f12cb.jpg', type, time)
+    getInvoiceLink(price, 'https://cybersport.metaratings.ru/storage/images/4f/9a/4f9ab43ff49dd6ad63eaf036295f12cb.jpg', type, time, name)
       .then(link => setInvoiceLink(link))
     tg.MainButton.setParams({text: `Перейти к оплате ${price} ₽`});
   }
@@ -146,7 +148,7 @@ const ServicePage = () => {
               {!isLoading ? Object.entries(items[0].types).map((type, i) => 
               <Button key={i} 
                 inner={type[0]} 
-                onClick={() => {setActiveTime(i); buttonHandler(type[1], '', type[0]);}} 
+                onClick={() => {setActiveTime(i); buttonHandler(type[1], '', type[0], name);}} 
                 active={activeTime === i ? true : false}/>) : ''}
             </ul>
           </>
