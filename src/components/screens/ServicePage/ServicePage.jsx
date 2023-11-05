@@ -3,6 +3,7 @@ import styles from './ServicePage.module.css'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Button from '../../Button/Button';
 import { useTelegram } from '../../../hooks/useTelegram'
+import Accordion from '../../Accordion/Accordion';
 
 
 const {tg} = useTelegram()
@@ -15,6 +16,7 @@ const COLORS = {
 }
 
 
+
 const ServicePage = () => {
   
 
@@ -22,71 +24,79 @@ const ServicePage = () => {
 
   const navigate = useNavigate();
 
-  const goBack = () => navigate(-1);
+  const goBack = () => navigate(
+    '/'
+  );
 
   const location = (useLocation().pathname).slice(1);
-  
+    
 
-  const getInvoiceLink = async (price) => {
-    const response = await fetch(`http://localhost:8000/api/createInvoiceLink`, {
+  const [items, setItems] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  const [price, setPrice] = useState(0);
+  const [invoiceLink, setInvoiceLink] = useState('')
+  const [activeType, setActiveType] = useState(0);
+  const [activeTime, setActiveTime] = useState(0);
+  const [type, setType] = useState();
+  const [time, setTime] = useState();
+
+
+  const getInvoiceLink = async (price, photoUrl, type, time, name='') => {
+    const response = await fetch(`https://bonniezu.ru/api/createInvoiceLink`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({title: `${location}`, price})
+      body: JSON.stringify({title: `${!!name ? '🕹️ ' + name : location }`, price, photoUrl, data: !!type & !!!name ? location + ' ' + type + ' ' + time : name + ' ' + time})
     })
     return await response.json()
   } 
 
-  const [items, setItems] = useState();
-  const [isLoading, setIsLoading] = useState(true);
-
-  const [price, setPrice] = useState(0)
-  const [invoiceLink, setInvoiceLink] = useState('')
 
   useEffect(() => {
     tg.BackButton.show();
   }, [price])
 
+
   useEffect(() => {
+    tg.setHeaderColor(`${COLORS[location] || 'secondary_bg_color'}`);
     tg.onEvent('backButtonClicked', goBack)
-    return () => {
-      tg.offEvent('backButtonClicked', goBack)
-    }
-  }, [])
-
-  console.log(tg.onEvent('invoiceClosed', console.log('123')))
-
-  useEffect(() => {
-    tg.setHeaderColor(`${COLORS[location]}`);
-    fetch(`http://localhost:8000/api/${location}`)
+    fetch(`https://bonniezu.ru/api/${location}`)
       .then(res => res.json())
       .then((arr) => {
         setItems(arr);
         setIsLoading(false)
         const price = typeof arr[0].types[Object.keys(arr[0].types)[0]] === 'object' ? Object.entries(arr[0].types[Object.keys(arr[0].types)[0]])[0][1] : Object.entries(arr[0].types)[0][1]
         setPrice(price)
-        getInvoiceLink(price)
+        const type = typeof arr[0].types[Object.keys(arr[0].types)[0]] === 'object' ? Object.keys(arr[0].types)[0] : ''
+        const time = (typeof arr[0].types[Object.keys(arr[0].types)[0]] === 'object' ? Object.entries(arr[0].types[Object.keys(arr[0].types)[0]])[0][0] : Object.entries(arr[0].types)[0][0])
+        getInvoiceLink(price, 'https://cybersport.metaratings.ru/storage/images/4f/9a/4f9ab43ff49dd6ad63eaf036295f12cb.jpg', type, time, arr[0]?.name)
           .then(link => setInvoiceLink(link))
         tg.MainButton.setParams({color: '#5CB85C', text: `Перейти к оплате ${price} ₽`})
         tg.MainButton.show()
       });
+
+      return () => {
+        tg.offEvent('backButtonClicked', goBack)
+        // tg.offEvent('invoiceClosed')
+      }
+
     }, []);
   
-  const [active0, setActive0] = useState(0);
-  const [active1, setActive1] = useState(0);
-  
-  const priceHandler = (price) => {
+
+  const buttonHandler = (price, type, time) => {
     setPrice(price);
-    getInvoiceLink(price)
+    getInvoiceLink(price, 'https://cybersport.metaratings.ru/storage/images/4f/9a/4f9ab43ff49dd6ad63eaf036295f12cb.jpg', type, time)
       .then(link => setInvoiceLink(link))
     tg.MainButton.setParams({text: `Перейти к оплате ${price} ₽`});
   }
+
 
   const onInvoiceLink = useCallback(() => {
     tg.openInvoice(invoiceLink)
   }, [invoiceLink])
   
+
   useEffect(() => {
     tg.MainButton.onClick(onInvoiceLink)
     return () => {
@@ -94,10 +104,12 @@ const ServicePage = () => {
     }
   }, [onInvoiceLink])
   
+
   return (
     <div className={styles.service_page}>
       <div className={styles.service_image} style={{ backgroundColor: `${COLORS[location]}` }}>
-        <img src={`/${location}.jpg`} alt={location} width='100%'/>
+        {!isLoading ? <img src={location.includes('games') ? `${items[0].gameImage}` : `/${location}.jpg`} alt={location} width='100%'/> : 'Loading...'}
+        
       </div>
       <div className={styles.order_card}>
         <div className={styles.order_price}>
@@ -112,18 +124,18 @@ const ServicePage = () => {
               <Button 
                 key={i} 
                 inner={type} 
-                onClick={() => {setActive0(i); setActive1(0); priceHandler(Object.entries(items[0].types[Object.keys(items[0].types)[i]])[0][1])}} 
-                active={active0 === i ? true : false}/>) 
+                onClick={() => {setActiveType(i); setActiveTime(0); setType(type); setTime(Object.keys(items[0].types[type])[0]); buttonHandler(Object.entries(items[0].types[Object.keys(items[0].types)[i]])[0][1], type, Object.keys(items[0].types[type])[0])}} 
+                active={activeType === i ? true : false}/>) 
               : 
               ''}
             </ul>
             <ul>
-              {!isLoading ? Object.entries(items[0].types[Object.keys(items[0].types)[active0]]).map((item, i) => 
+              {!isLoading ? Object.entries(items[0].types[Object.keys(items[0].types)[activeType]]).map((item, i) => 
               <Button 
                 key={i} 
                 inner={item[0]} 
-                onClick={() => {setActive1(i); priceHandler(item[1])}} 
-                active={active1 === i ? true : false}/>) 
+                onClick={() => {setActiveTime(i); setTime(item[0]); buttonHandler(item[1], type, item[0]);}} 
+                active={activeTime === i ? true : false}/>) 
               : 
               ''}
             </ul>
@@ -134,13 +146,17 @@ const ServicePage = () => {
               {!isLoading ? Object.entries(items[0].types).map((type, i) => 
               <Button key={i} 
                 inner={type[0]} 
-                onClick={() => {setActive0(i); priceHandler(type[1])}} 
-                active={active0 === i ? true : false}/>) : ''}
+                onClick={() => {setActiveTime(i); buttonHandler(type[1], '', type[0]);}} 
+                active={activeTime === i ? true : false}/>) : ''}
             </ul>
           </>
           }
-          {!isLoading && typeof items[0].types[Object.keys(items[0].types)[0]] !== 'object' ? '' : ''}
         </div>
+      </div>
+      <div className={styles.about_card}>
+        {!isLoading && !!items[0]?.description ? Object.keys(items[0]?.description).map((item, i) => (
+          <Accordion title={item} content={items[0]?.description[item]}/>
+        )) : ''}
       </div>
     </div>
   )

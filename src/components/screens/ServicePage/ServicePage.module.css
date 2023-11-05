@@ -1,9 +1,18 @@
+body {
+    background-color: var(--tg-theme-secondary-bg-color);
+}
+
 .service_page
 {
     background-color: var(--tg-theme-secondary-bg-color);
     min-height: 100vh;
 }
 
+
+img
+{
+    border-radius: 0 0 20px 20px;
+}
 
 .service_image
 {   
@@ -32,8 +41,8 @@ hr
     top: -20px;
     position: relative;
     background-color: var(--tg-theme-bg-color);
-    height: 300px;
 }
+
 
 .order_price
 {
@@ -43,6 +52,7 @@ hr
     margin-bottom: 10px;
 }
 
+
 .order_selector
 {
     display: flex;
@@ -51,6 +61,7 @@ hr
     flex-direction: column;
     padding: 6px;
 }
+
 
 ul
 {
@@ -64,7 +75,14 @@ ul:first-of-type
     margin-bottom: 6px;
 }
 
+
 ul:only-of-type
 {
     margin-bottom: 0;
+}
+
+
+.about_card 
+{
+
 }

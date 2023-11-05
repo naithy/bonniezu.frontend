@@ -9,10 +9,8 @@ const {tg} = useTelegram()
 
 const Home = () => {
 
-  useLayoutEffect(() => {
-    if (tg.BackButton.isVisible) {
-      tg.BackButton.hide();
-    }
+  useEffect(() => {
+    tg.BackButton.hide();
     tg.MainButton.hide();
   }, [])
 

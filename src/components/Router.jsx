@@ -13,6 +13,7 @@ function Router() {
             <Route element={<ServicePage/>} path='/faceit'/>
             <Route element={<ServicePage/>} path='/spotify'/>
             <Route element={<ServicePage/>} path='/steam'/>
+            <Route element={<ServicePage/>} path='/games/:id'/>
         </Routes>
     </BrowserRouter>
   )
