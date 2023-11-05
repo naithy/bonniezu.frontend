@@ -62,6 +62,11 @@ const ServicePage = () => {
   useEffect(() => {
     tg.setHeaderColor(`${COLORS[location] || 'secondary_bg_color'}`);
     tg.onEvent('backButtonClicked', goBack)
+    tg.onEvent('invoiceClosed', (obj) => {
+      if (obj.status === 'paid') {
+        tg.close();
+      }
+    })
     fetch(`https://bonniezu.ru/api/${location}`)
       .then(res => res.json())
       .then((arr) => {
@@ -80,7 +85,7 @@ const ServicePage = () => {
 
       return () => {
         tg.offEvent('backButtonClicked', goBack)
-        // tg.offEvent('invoiceClosed')
+        tg.offEvent('invoiceClosed')
       }
 
     }, []);
