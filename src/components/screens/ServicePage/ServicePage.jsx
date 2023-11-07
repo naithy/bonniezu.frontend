@@ -55,6 +55,7 @@ const ServicePage = () => {
 
 
   useEffect(() => {
+    console.log(location)
     tg.BackButton.show();
   }, [price])
 
@@ -76,18 +77,21 @@ const ServicePage = () => {
         setPrice(price)
         const type = typeof arr[0].types[Object.keys(arr[0].types)[0]] === 'object' ? Object.keys(arr[0].types)[0] : ''
         const time = (typeof arr[0].types[Object.keys(arr[0].types)[0]] === 'object' ? Object.entries(arr[0].types[Object.keys(arr[0].types)[0]])[0][0] : Object.entries(arr[0].types)[0][0])
-        setName(arr[0]?.name)
+        setName(!!arr[0]?.name ? arr[0]?.name : location)
         getInvoiceLink(price, 'https://cybersport.metaratings.ru/storage/images/4f/9a/4f9ab43ff49dd6ad63eaf036295f12cb.jpg', type, time, arr[0]?.name)
           .then(link => setInvoiceLink(link))
         tg.MainButton.setParams({color: '#5CB85C', text: `Перейти к оплате ${price} ₽`})
         tg.MainButton.show()
       });
 
+      console.log(arr[0]?.name)
+
       return () => {
         tg.offEvent('backButtonClicked', goBack)
         tg.offEvent('invoiceClosed')
       }
 
+      
     }, []);
   
 
