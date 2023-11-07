@@ -42,13 +42,13 @@ const ServicePage = () => {
   const [name, setName] = useState();
 
 
-  const getInvoiceLink = async (price, photoUrl, type, time, name='') => {
+  const getInvoiceLink = async (price, photoUrl, type, time, name) => {
     const response = await fetch(`https://bonniezu.ru/api/createInvoiceLink`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({title: `${!!name ? '🕹️ ' + name : location }`, price, photoUrl, data: !!type & !!!name ? location + ' ' + type + ' ' + time : name + ' ' + time})
+      body: JSON.stringify({title: name, price, photoUrl, data: !!type ? name + ' ' + type + ' ' + time : name + ' ' + time})
     })
     return await response.json()
   } 
