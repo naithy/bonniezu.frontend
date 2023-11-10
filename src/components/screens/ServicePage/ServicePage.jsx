@@ -55,7 +55,6 @@ const ServicePage = () => {
 
 
   useEffect(() => {
-    console.log(location)
     tg.BackButton.show();
   }, [price])
 
@@ -84,7 +83,6 @@ const ServicePage = () => {
         tg.MainButton.show()
       });
 
-      console.log(arr[0]?.name)
 
       return () => {
         tg.offEvent('backButtonClicked', goBack)
