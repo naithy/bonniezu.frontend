@@ -1,6 +1,11 @@
-.other__page
+body
 {
     background-color: var(--tg-theme-bg-color);
+}
+
+
+.other__page
+{
     padding: 16px;
 }
 
