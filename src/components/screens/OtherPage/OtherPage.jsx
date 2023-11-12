@@ -1,14 +1,28 @@
 import React, { useEffect } from 'react'
 import styles from './OtherPage.module.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useTelegram } from '../../../hooks/useTelegram'
 
 
 const OtherPage = () => {
 
+    const navigate = useNavigate();
+
+    const goBack = () => navigate(
+        '/'
+    );
+
     const { tg } = useTelegram()
+
+    tg.BackButton.show();
+
     useEffect(() => {
         tg.setHeaderColor('bg_color')
+        tg.onEvent('backButtonClicked', goBack)
+
+        return () => {
+            tg.offEvent('backButtonClicked', goBack)
+          }
     })
 
   return (
