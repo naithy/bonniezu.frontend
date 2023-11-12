@@ -5,7 +5,8 @@ import { useTelegram } from '../../../hooks/useTelegram'
 
 
 const OtherPage = () => {
-
+    
+    const { tg } = useTelegram()
     useEffect(() => {
         tg.setHeaderColor('bg_color')
     })
