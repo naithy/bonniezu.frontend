@@ -19,6 +19,7 @@ function Router() {
             <Route element={<ServicePage/>} path='/chatgpt'/>
             <Route element={<ServicePage/>} path='/brawl'/>
             <Route element={<ServicePage/>} path='/xbox'/>
+            <Route element={<ServicePage/>} path='/fc'/>
         </Routes>
     </BrowserRouter>
   )

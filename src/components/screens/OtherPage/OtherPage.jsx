@@ -31,6 +31,7 @@ const OtherPage = () => {
             <li className={styles.other__title}><Link to='/chatgpt' className={styles.other__title_a}>ChatGPT</Link></li>
             <li className={styles.other__title}><Link to='/xbox' className={styles.other__title_a}>Xbox Game Pass</Link></li>
             <li className={styles.other__title}><Link to='/brawl' className={styles.other__title_a}>Гемы Brawl Stars</Link></li>
+            <li className={styles.other__title}><Link to='/fc' className={styles.other__title_a}>Поинты EA SPORTS FC 24</Link></li>
         </ul>
     </div>
   )
