@@ -43,7 +43,7 @@ const ServicePage = () => {
   const [name, setName] = useState();
 
 
-  const getInvoiceLink = async (price, photoUrl, type, time, name='') => {
+  const getInvoiceLink = async (price, type, time, name='') => {
     const response = await fetch(`https://bonniezu.ru/api/createInvoiceLink`, {
       method: 'POST',
       headers: {
@@ -78,7 +78,7 @@ const ServicePage = () => {
         const type = typeof arr[0].types[Object.keys(arr[0].types)[0]] === 'object' ? Object.keys(arr[0].types)[0] : ''
         const time = (typeof arr[0].types[Object.keys(arr[0].types)[0]] === 'object' ? Object.entries(arr[0].types[Object.keys(arr[0].types)[0]])[0][0] : Object.entries(arr[0].types)[0][0])
         setName(arr[0]?.name)
-        getInvoiceLink(price, 'https://cybersport.metaratings.ru/storage/images/4f/9a/4f9ab43ff49dd6ad63eaf036295f12cb.jpg', type, time, arr[0]?.name)
+        getInvoiceLink(price, type, time, arr[0]?.name)
           .then(link => setInvoiceLink(link))
         tg.MainButton.setParams({color: '#5CB85C', text: `Перейти к оплате ${price} ₽`})
         tg.MainButton.show()
@@ -96,7 +96,7 @@ const ServicePage = () => {
 
   const buttonHandler = (price, type, time, name='') => {
     setPrice(price);
-    getInvoiceLink(price, 'https://cybersport.metaratings.ru/storage/images/4f/9a/4f9ab43ff49dd6ad63eaf036295f12cb.jpg', type, time, name)
+    getInvoiceLink(price, type, time, name)
       .then(link => setInvoiceLink(link))
     tg.MainButton.setParams({text: `Перейти к оплате ${price} ₽`});
   }
