@@ -1,12 +1,13 @@
 .other__page
 {
+    background-color: var(--tg-theme-bg-color);
     padding: 16px;
 }
 
 
 .other__list
 {
-    background-color: var(--tg-theme-bg-color);
+    background-color: var(--tg-theme-secondary-bg-color);
     padding: 11px;
     border-radius: 11px;
 }

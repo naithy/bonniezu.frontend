@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './OtherPage.module.css'
 import { Link } from 'react-router-dom'
+import { useTelegram } from '../../../hooks/useTelegram'
 
 
 const OtherPage = () => {
+
+    useEffect(() => {
+        tg.setHeaderColor('bg_color')
+    })
+
   return (
     <div className={styles.other__page}>
         <ul className={styles.other__list}>
