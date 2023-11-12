@@ -18,6 +18,7 @@ function Router() {
             <Route element={<OtherPage/>} path='/other'/>
             <Route element={<ServicePage/>} path='/chatgpt'/>
             <Route element={<ServicePage/>} path='/brawl'/>
+            <Route element={<ServicePage/>} path='/xbox'/>
         </Routes>
     </BrowserRouter>
   )
