@@ -13,6 +13,7 @@ const COLORS = {
   faceit: '#FFFFFF',
   spotify: '#19E58D',
   steam: '#C0DFDC',
+  chatgpt: '#181818'
 }
 
 
@@ -164,7 +165,7 @@ const ServicePage = () => {
       </div>
       <div className={styles.about_card}>
         {!isLoading && !!items[0]?.description ? Object.keys(items[0]?.description).map((item, i) => (
-          <Accordion title={item} content={items[0]?.description[item]}/>
+          <Accordion key={i} title={item} content={items[0]?.description[item]}/>
         )) : ''}
       </div>
     </div>

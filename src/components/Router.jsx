@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './screens/Home/Home'
 import ServicePage from './screens/ServicePage/ServicePage'
+import OtherPage from './screens/OtherPage/OtherPage'
 
 
 function Router() {
@@ -14,6 +15,9 @@ function Router() {
             <Route element={<ServicePage/>} path='/spotify'/>
             <Route element={<ServicePage/>} path='/steam'/>
             <Route element={<ServicePage/>} path='/games/:id'/>
+            <Route element={<OtherPage/>} path='/other'/>
+            <Route element={<ServicePage/>} path='/chatgpt'/>
+            <Route element={<ServicePage/>} path='/brawl'/>
         </Routes>
     </BrowserRouter>
   )
