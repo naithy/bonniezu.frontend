@@ -105,7 +105,7 @@ const ServicePage = () => {
 
 
   const onInvoiceLink = useCallback(() => {
-    tg.openInvoice(invoiceLink)
+    tg.openLink(invoiceLink)
   }, [invoiceLink])
   
 
