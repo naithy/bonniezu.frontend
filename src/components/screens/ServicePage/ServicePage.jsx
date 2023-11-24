@@ -49,8 +49,9 @@ const ServicePage = () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({title: `${!!name ? '🕹️ ' + name : location }`, price, photoUrl, data: !!type & !!!name ? location + ' ' + type + ' ' + time : name + ' ' + time})
+      body: JSON.stringify({desc: `${!!name ? '🕹️ ' + name : location }`, amount: price})
     })
+    // , data: !!type & !!!name ? location + ' ' + type + ' ' + time : name + ' ' + time
     return await response.json()
   } 
 
@@ -78,7 +79,8 @@ const ServicePage = () => {
         const type = typeof arr[0].types[Object.keys(arr[0].types)[0]] === 'object' ? Object.keys(arr[0].types)[0] : ''
         const time = (typeof arr[0].types[Object.keys(arr[0].types)[0]] === 'object' ? Object.entries(arr[0].types[Object.keys(arr[0].types)[0]])[0][0] : Object.entries(arr[0].types)[0][0])
         setName(arr[0]?.name)
-        getInvoiceLink(price, type, time, arr[0]?.name)
+        setType(Object.keys(arr[0]?.types)[0])
+        getInvoiceLink(price, Object.keys(arr[0]?.types)[0], time, arr[0]?.name)
           .then(link => setInvoiceLink(link))
         tg.MainButton.setParams({color: '#5CB85C', text: `Перейти к оплате ${price} ₽`})
         tg.MainButton.show()
@@ -94,7 +96,7 @@ const ServicePage = () => {
     }, []);
   
 
-  const buttonHandler = (price, type, time, name='') => {
+  const buttonHandler = (price, type, time, nameIn='') => {
     setPrice(price);
     getInvoiceLink(price, type, time, name)
       .then(link => setInvoiceLink(link))
@@ -144,7 +146,7 @@ const ServicePage = () => {
               <Button 
                 key={i} 
                 inner={item[0]} 
-                onClick={() => {setActiveTime(i); setTime(item[0]); buttonHandler(item[1], type, item[0]);}} 
+                onClick={() => {setActiveTime(i); setTime(item[0]); buttonHandler(item[1], type, item[0]); setType(Object.keys(items[0].types)[activeType])}} 
                 active={activeTime === i ? true : false}/>) 
               : 
               ''}
@@ -156,7 +158,7 @@ const ServicePage = () => {
               {!isLoading ? Object.entries(items[0].types).map((type, i) => 
               <Button key={i} 
                 inner={type[0]} 
-                onClick={() => {setActiveTime(i); buttonHandler(type[1], '', type[0], name);}} 
+                onClick={() => {setActiveTime(i); setType('|'); buttonHandler(type[1], '|', type[0])}} 
                 active={activeTime === i ? true : false}/>) : ''}
             </ul>
           </>
