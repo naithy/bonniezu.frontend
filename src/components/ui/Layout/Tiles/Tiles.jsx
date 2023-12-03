@@ -2,7 +2,6 @@ import React from 'react'
 import styles from './Tiles.module.css'
 import Tile from "../../../Tile/Tile"
 import TileBig from '../../../Tile/TileBig'
-import ServicePage from '../../../screens/ServicePage/ServicePage'
 
 
 const COLORS = {
@@ -10,6 +9,8 @@ const COLORS = {
     faceit: '#FF5500',
     spotify: '#1DB954',
     steam: '#00adee',
+    chatgpt: '#15A17E',
+    xbox: '#107C0F'
 }
 
 function Tiles() {
@@ -18,7 +19,7 @@ function Tiles() {
         <div className={styles.tiles_column}>
             <Tile color={COLORS.discord} to='discord'></Tile>
             <Tile color={COLORS.faceit} title='Faceit' to='faceit'>
-                
+
             </Tile>
         </div>
         <div className={styles.tiles_column}>
@@ -26,7 +27,11 @@ function Tiles() {
             <Tile color={COLORS.steam} to='steam'></Tile>
         </div>
         <div className={styles.tiles_column}>
-            <TileBig color={`var(--tg-theme-bg-color)`} to='other' title='...'></TileBig>
+            <Tile color={COLORS.chatgpt} title='Chat GPT' to='chatgpt'></Tile>
+            <Tile color={COLORS.xbox} to='xbox'></Tile>
+        </div>
+        <div className={styles.tiles_column}>
+            <TileBig color={`var(--tg-theme-bg-color)`} to='other' title='Валюта для игр'></TileBig>
         </div>
     </div>
   )

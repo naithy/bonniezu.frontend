@@ -4,8 +4,9 @@ import discordIcon from '@iconify/icons-simple-icons/discord';
 import faceitIcon from '@iconify/icons-simple-icons/faceit'
 import spotifyIcon from '@iconify/icons-simple-icons/spotify';
 import steamIcon from '@iconify/icons-simple-icons/steam';
+import openaiChatgpt from '@iconify/icons-arcticons/openai-chatgpt';
+import xboxIcon from '@iconify/icons-bi/xbox';
 import styles from './Tile.module.css'
-import {Link} from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -14,6 +15,8 @@ const ICONS = {
   faceit: faceitIcon,
   spotify: spotifyIcon,
   steam: steamIcon,
+  chatgpt: openaiChatgpt,
+  xbox: xboxIcon
 }
 
 
