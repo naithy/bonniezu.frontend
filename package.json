@@ -17,6 +17,8 @@
     "react-router-dom": "^6.17.0"
   },
   "devDependencies": {
+    "@iconify/icons-arcticons": "^1.2.77",
+    "@iconify/icons-bi": "^1.2.19",
     "@iconify/icons-simple-icons": "^1.2.73",
     "@iconify/react": "^4.1.1",
     "@types/react": "^18.2.15",

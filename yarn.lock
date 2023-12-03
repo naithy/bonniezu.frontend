@@ -374,6 +374,20 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
+"@iconify/icons-arcticons@^1.2.77":
+  version "1.2.77"
+  resolved "https://registry.yarnpkg.com/@iconify/icons-arcticons/-/icons-arcticons-1.2.77.tgz#a7ff20c49cff610a3fd576a1e83ed36032fc6e98"
+  integrity sha512-N7RoFR/YmOgKj96kkU+DFxghkrxvaJo5huKW/CsBk1Di94CLRQSwVy8AXa6hKh04q3ThfpO89zgeeWhp1VlC9g==
+  dependencies:
+    "@iconify/types" "*"
+
+"@iconify/icons-bi@^1.2.19":
+  version "1.2.19"
+  resolved "https://registry.yarnpkg.com/@iconify/icons-bi/-/icons-bi-1.2.19.tgz#0492a6d871316db5e36f27d2667f217b5dd634e3"
+  integrity sha512-P3enKEBR83a4fcK6vOsSueYpldYS3OdtSSto58bYU0sWThlxl+YXcmXY6Pu0ORKuMHK/hQagpwXPb+hT4vaO2g==
+  dependencies:
+    "@iconify/types" "*"
+
 "@iconify/icons-simple-icons@^1.2.73":
   version "1.2.73"
   resolved "https://registry.yarnpkg.com/@iconify/icons-simple-icons/-/icons-simple-icons-1.2.73.tgz#15b1301edc4a97cc527c4802ec98adb4aad72c45"
