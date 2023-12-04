@@ -6,7 +6,7 @@ import { useTelegram } from '../../../hooks/useTelegram'
 import Accordion from '../../Accordion/Accordion';
 
 
-const {tg} = useTelegram()
+const {tg, user} = useTelegram()
 
 const COLORS = {
   discord: '#586AE9',
@@ -49,7 +49,7 @@ const ServicePage = () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({desc: `${ !!type & !!!name ? location + ' ' + type + ' ' + time : name + ' ' + time }`, amount: price})
+      body: JSON.stringify({desc: `${ !!type & !!!name ? location + ' ' + type + ' ' + time : name + ' ' + time }`, amount: price, custom: `${user.userName + user.id}`})
     })
     // , data: !!type & !!!name ? location + ' ' + type + ' ' + time : name + ' ' + time
     return await response.json()
