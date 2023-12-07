@@ -57,6 +57,7 @@ const ServicePage = () => {
 
 
   useEffect(() => {
+    console.log(user.userName, user.id)
     tg.BackButton.show();
   }, [price])
 
