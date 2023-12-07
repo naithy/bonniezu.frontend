@@ -49,7 +49,7 @@ const ServicePage = () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({desc: `${ !!type & !!!name ? location + ' ' + type + ' ' + time : name + ' ' + time }`, amount: price, custom: `${user.userName + user.id}`})
+      body: JSON.stringify({desc: `${ !!type & !!!name ? location + ' ' + type + ' ' + time : name + ' ' + time }`, amount: price, custom: `${user.username + user.id}`})
     })
     // , data: !!type & !!!name ? location + ' ' + type + ' ' + time : name + ' ' + time
     return await response.json()
@@ -57,7 +57,6 @@ const ServicePage = () => {
 
 
   useEffect(() => {
-    console.log(user.userName, user.id)
     tg.BackButton.show();
   }, [price])
 
