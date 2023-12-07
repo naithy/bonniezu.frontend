@@ -49,7 +49,7 @@ const ServicePage = () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({desc: `${ !!type & !!!name ? location + ' ' + type + ' ' + time : name + ' ' + time }`, amount: price, custom: `${user.username + user.id}`})
+      body: JSON.stringify({desc: `${ !!type & !!!name ? location + ' ' + type + ' ' + time : name + ' ' + time }`, amount: price, user_name: user.username, user_id: user.id})
     })
     // , data: !!type & !!!name ? location + ' ' + type + ' ' + time : name + ' ' + time
     return await response.json()
