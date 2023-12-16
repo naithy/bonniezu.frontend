@@ -19,16 +19,12 @@ function Tiles() {
     <div className={styles.tiles}>
         <div className={styles.tiles_column}>
             <Tile color={COLORS.discord} to='discord'></Tile>
-            <Tile color={COLORS.faceit} title='Faceit' to='faceit'>
-
-            </Tile>
+            <Tile color={COLORS.faceit} title='Faceit' to='faceit'></Tile>
+            <Tile color={COLORS.chatgpt} title='Chat GPT' to='chatgpt'></Tile>
         </div>
         <div className={styles.tiles_column}>
             <Tile color={COLORS.spotify} title='Spotify' to='spotify'></Tile>
             <Tile color={COLORS.steam} to='steam'></Tile>
-        </div>
-        <div className={styles.tiles_column}>
-            <Tile color={COLORS.chatgpt} title='Chat GPT' to='chatgpt'></Tile>
             <Tile color={COLORS.xbox} to='xbox'></Tile>
         </div>
         <div className={styles.tiles_column}>

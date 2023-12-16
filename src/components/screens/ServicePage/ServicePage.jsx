@@ -14,8 +14,8 @@ const COLORS = {
   spotify: '#19E58D',
   steam: '#C0DFDC',
   xbox: '#107C0F',
-  chatgpt: '#181818',
-  battlenet: '#034B7B'
+  chatgpt: '#15A17E',
+  battlenet: '#15171E'
 }
 
 
