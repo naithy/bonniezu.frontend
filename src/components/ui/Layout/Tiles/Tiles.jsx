@@ -30,10 +30,10 @@ function Tiles() {
         <div className={styles.tiles_column}>
             <Tile color={COLORS.chatgpt} title='Chat GPT' to='chatgpt'></Tile>
             <Tile color={COLORS.xbox} to='xbox'></Tile>
-            <Tile color={COLORS.battlenet} to='battlenet'/>
         </div>
         <div className={styles.tiles_column}>
-            <TileBig color={`var(--tg-theme-bg-color)`} to='other' title='Валюта для игр'></TileBig>
+            <Tile color={COLORS.battlenet} to='battlenet'/>
+            <Tile color={`var(--tg-theme-bg-color)`} to='other' title='Валюта для игр'></Tile>
         </div>
     </div>
   )
