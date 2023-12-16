@@ -17,7 +17,7 @@ const COLORS = {
   xbox: '#107C0F',
   chatgpt: '#15A17E',
   battlenet: '#15171E',
-  fortnite: '#0099EB'
+  fortnite: '#006FE5'
 }
 
 

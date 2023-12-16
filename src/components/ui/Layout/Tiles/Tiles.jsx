@@ -11,7 +11,7 @@ const COLORS = {
     chatgpt: '#15A17E',
     xbox: '#107C0F',
     battlenet: '#15171E',
-    fortnite: '#0099EB'
+    fortnite: '#006FE5'
 }
 
 function Tiles() {
