@@ -7,6 +7,7 @@ import steamIcon from '@iconify/icons-simple-icons/steam';
 import openaiChatgpt from '@iconify/icons-arcticons/openai-chatgpt';
 import xboxIcon from '@iconify/icons-bi/xbox';
 import battleNetIcon from '@iconify/icons-fa6-brands/battle-net';
+import brandFortniteIcon from '@iconify/icons-tabler/brand-fortnite';
 import styles from './Tile.module.css'
 import { useNavigate } from 'react-router-dom'
 
@@ -18,7 +19,8 @@ const ICONS = {
   steam: steamIcon,
   chatgpt: openaiChatgpt,
   xbox: xboxIcon,
-  battlenet: battleNetIcon
+  battlenet: battleNetIcon,
+  fortnite: brandFortniteIcon
 }
 
 

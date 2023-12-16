@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import Button from '../../Button/Button';
 import { useTelegram } from '../../../hooks/useTelegram'
 import Accordion from '../../Accordion/Accordion';
+import brandFortnite from '@iconify/icons-tabler/brand-fortnite';
 
 
 const {tg, user} = useTelegram()
@@ -12,10 +13,11 @@ const COLORS = {
   discord: '#586AE9',
   faceit: '#FFFFFF',
   spotify: '#19E58D',
-  steam: '#C0DFDC',
+  steam: '#C0DFDA',
   xbox: '#107C0F',
   chatgpt: '#15A17E',
-  battlenet: '#15171E'
+  battlenet: '#15171E',
+  fortnite: '#0099EB'
 }
 
 

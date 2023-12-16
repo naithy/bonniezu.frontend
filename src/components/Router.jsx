@@ -21,6 +21,7 @@ function Router() {
             <Route element={<ServicePage/>} path='/xbox'/>
             <Route element={<ServicePage/>} path='/fc'/>
             <Route element={<ServicePage/>} path='/battlenet'/>
+            <Route element={<ServicePage/>} path='/fortnite'/>
         </Routes>
     </BrowserRouter>
   )
