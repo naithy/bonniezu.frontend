@@ -388,6 +388,13 @@
   dependencies:
     "@iconify/types" "*"
 
+"@iconify/icons-fa6-brands@^1.2.11":
+  version "1.2.11"
+  resolved "https://registry.yarnpkg.com/@iconify/icons-fa6-brands/-/icons-fa6-brands-1.2.11.tgz#d6dd1d16f5fdcb3b4c8171035a7c92d51b5f444c"
+  integrity sha512-M45384DjmylDO74UJpL1E//B8R0bKu36Tkf80w394Iuo7BP5u1k4Ca3QgB9L5NzMyIwbhAKKEBFOo0NcfsSg5Q==
+  dependencies:
+    "@iconify/types" "*"
+
 "@iconify/icons-simple-icons@^1.2.73":
   version "1.2.73"
   resolved "https://registry.yarnpkg.com/@iconify/icons-simple-icons/-/icons-simple-icons-1.2.73.tgz#15b1301edc4a97cc527c4802ec98adb4aad72c45"

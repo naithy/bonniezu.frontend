@@ -10,7 +10,8 @@ const COLORS = {
     spotify: '#1DB954',
     steam: '#00adee',
     chatgpt: '#15A17E',
-    xbox: '#107C0F'
+    xbox: '#107C0F',
+    battlenet: '#08A5F4',
 }
 
 function Tiles() {
@@ -29,6 +30,7 @@ function Tiles() {
         <div className={styles.tiles_column}>
             <Tile color={COLORS.chatgpt} title='Chat GPT' to='chatgpt'></Tile>
             <Tile color={COLORS.xbox} to='xbox'></Tile>
+            <Tile color={COLORS.battlenet} to='battlenet'/>
         </div>
         <div className={styles.tiles_column}>
             <TileBig color={`var(--tg-theme-bg-color)`} to='other' title='Валюта для игр'></TileBig>
